@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CbX-vf-SLX">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -25,22 +25,22 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7K-d6-A3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3438" y="494"/>
+            <point key="canvasLocation" x="-3491" y="-856"/>
         </scene>
         <!--Lista de Compras-->
         <scene sceneID="Lus-Cz-Smm">
             <objects>
                 <tableViewController id="llK-sc-ky8" customClass="ComprasTableViewController" customModule="ComprasUSA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7Gc-IC-taV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dbO-Ln-UX5">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dbO-Ln-UX5" id="yTI-8Z-Msl">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -61,14 +61,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdJ-Kj-Kdm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1290" y="92"/>
+            <point key="canvasLocation" x="-1799" y="96"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="a0c-iR-Lja">
             <objects>
                 <viewController id="cBs-jx-igP" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="icv-uF-fl2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ze7-UH-cAf"/>
@@ -77,16 +77,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Nj-XV-vdT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-529" y="100"/>
+            <point key="canvasLocation" x="-1038" y="96"/>
         </scene>
-        <!--Item-->
+        <!--Tela de Compras-->
         <scene sceneID="27I-gG-zoV">
             <objects>
                 <navigationController id="uiZ-Px-3zm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Sg8-vf-ZVt"/>
+                    <tabBarItem key="tabBarItem" title="Tela de Compras" image="bag.fill" catalog="system" id="Sg8-vf-ZVt"/>
                     <navigationItem key="navigationItem" id="Nqx-6o-zN8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wS5-a7-2Ts">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -95,40 +95,45 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pW8-EL-rWq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2165" y="92"/>
+            <point key="canvasLocation" x="-2570" y="96"/>
         </scene>
-        <!--Item-->
+        <!--Ajustes-->
         <scene sceneID="hMv-RZ-4Sx">
             <objects>
                 <viewController id="TqS-zc-Cry" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MCB-fg-Hyw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="tIw-oN-2mf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="I4z-SD-phn"/>
+                    <tabBarItem key="tabBarItem" title="Ajustes" image="pencil.and.outline" catalog="system" id="I4z-SD-phn"/>
                     <navigationItem key="navigationItem" id="ALY-kJ-TND"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wA6-dz-INh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1804" y="771"/>
+            <point key="canvasLocation" x="-3490" y="104"/>
         </scene>
-        <!--Item-->
+        <!--Compras-->
         <scene sceneID="ia0-Ff-fb1">
             <objects>
                 <viewController id="BHP-Pv-Am8" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ncD-lS-DgU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="nT1-u9-voF"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="daD-MP-ECq"/>
+                    <tabBarItem key="tabBarItem" title="Compras" image="bag" catalog="system" id="daD-MP-ECq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5XT-bT-yuG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2581" y="1192"/>
+            <point key="canvasLocation" x="-4436" y="100"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bag" catalog="system" width="128" height="128"/>
+        <image name="bag.fill" catalog="system" width="128" height="128"/>
+        <image name="pencil.and.outline" catalog="system" width="128" height="119"/>
+    </resources>
 </document>
