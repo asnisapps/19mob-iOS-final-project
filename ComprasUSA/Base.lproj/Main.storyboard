@@ -86,7 +86,7 @@
                     <tabBarItem key="tabBarItem" title="Tela de Compras" image="bag.fill" catalog="system" id="Sg8-vf-ZVt"/>
                     <navigationItem key="navigationItem" id="Nqx-6o-zN8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wS5-a7-2Ts">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
