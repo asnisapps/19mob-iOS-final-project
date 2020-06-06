@@ -63,7 +63,7 @@
             </objects>
             <point key="canvasLocation" x="-1290" y="92"/>
         </scene>
-        <!--View Controller-->
+        <!--Cadastrar Produto-->
         <scene sceneID="a0c-iR-Lja">
             <objects>
                 <viewController id="cBs-jx-igP" sceneMemberID="viewController">
@@ -121,7 +121,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ze7-UH-cAf"/>
                     </view>
-                    <navigationItem key="navigationItem" id="71D-AH-vPc"/>
+                    <navigationItem key="navigationItem" title="Cadastrar Produto" id="I8q-Tw-xge"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Nj-XV-vdT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
