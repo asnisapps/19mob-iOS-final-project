@@ -79,7 +79,7 @@ class ProdutoViewController: UIViewController {
         }
         
         product?.name = tfProductName.text
-        product?.value = tfProductValue.text as? NSDecimalNumber
+        product?.value = NSDecimalNumber(string: tfProductValue.text ?? "0.0")
         //product?.states =
         product?.isCredit = swProductCard.isOn
         product?.image = ivProductImage.image?.jpegData(compressionQuality: 0.8)
