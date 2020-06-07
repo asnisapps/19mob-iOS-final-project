@@ -28,7 +28,9 @@ class CompraViewController: UIViewController {
             swProductCard.isOn = product.isCredit
             pvProductState.dataSource = product.states as? UIPickerViewDataSource
             //pvProductState.selectedRow(inComponent: product.states.)
-            ivProductImage.image = product.image as? UIImage
+            if let data = product.image {
+                ivProductImage.image = UIImage(data: data)
+            }
             btProductSave.setTitle("Alterar", for: .normal)
         }
         

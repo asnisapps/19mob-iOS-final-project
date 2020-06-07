@@ -7,40 +7,92 @@
 //
 
 import UIKit
+import CoreData
 
 class ComprasTableViewController: UITableViewController {
 
+    //Criando label que será a mensagem caso não tenham compras cadastradas
+    var label = UILabel(frame: CGRect(x: 0, y:0, width: 200, height: 22))
+    
+    //Criando o objeto que fará requisições ao contexto, realizando solicitações ao entities criados
+    var fetchedResultController: NSFetchedResultsController<Product>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //Definindo o texto e alinhamento da label
+        label.text = "Sua lista está vazia!"
+        label.textAlignment = .center
+        
+        //Carregando a lista de compras
+        loadProducts()
+    }
+    
+    func loadProducts() {
+        //Criando um objeto de requisição que será feita através da fetchedResultController
+        //Essa request pode ser criada a partir do método da própria model
+        let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
+        
+        //Definindo o tipo de ordenação da busca. Aqui, definimos ordenação ascendente por name
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true )
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        //Instanciando NSFetchedResultsController, passando as informações de fetchRequest
+        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        //Definimos nossa ComprasTableViewController como delegate da fetchedRèsultController
+        fetchedResultController.delegate = self
+        do {
+            //Executando a requisição
+            try fetchedResultController.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "edit" {
+            if let vc = segue.destination as? CompraViewController {
+                vc.product = fetchedResultController.object(at: tableView.indexPathForSelectedRow!)
+            }
+        }
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        //Caso existam objetos recuperados pela fetchedResultController, preparamos a tableView
+        if let count = fetchedResultController.fetchedObjects?.count {
+            tableView.backgroundView = count == 0 ? label : nil
+            return count
+        } else {
+            tableView.backgroundView = label
+            return 0
+        }
+        
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as?
+            CompraTableViewCell else {
+            return UITableViewCell()
+        }
 
-        // Configure the cell...
+        //Recuperando da fetchedResultController o produto referente à célula
+        let product  = fetchedResultController.object(at: indexPath)
 
+        cell.prepare(with: product)
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -50,17 +102,25 @@ class ComprasTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            let product = fetchedResultController.object(at: indexPath)
+            
+            //Excluindo o produto do contexto
+            context.delete(product)
+            
+            do {
+                //Persistindo a exclusão
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+          
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -87,4 +147,13 @@ class ComprasTableViewController: UITableViewController {
     }
     */
 
+}
+
+//Implementando o protocolo NSFetchedResultsControllerDelegate
+extension ComprasTableViewController: NSFetchedResultsControllerDelegate {
+    
+    //Método que é chamado sempre que uma alteração é feita no contexto
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.reloadData()
+    }
 }
