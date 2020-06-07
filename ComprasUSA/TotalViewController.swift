@@ -31,6 +31,9 @@ class TotalViewController: UIViewController {
         
         //Carrega produtos
         loadProducts()
+        
+        //Calcula totais logo que entrar na tela
+        calculateTotals()
     }
     
     func loadProducts() {
@@ -70,8 +73,13 @@ class TotalViewController: UIViewController {
                     //Soma o valor bruto em dolar ao total USD
                     totalUSD = totalUSD + decimalValueOfProduct!
                     
-                    //Busca a taxa do estado do produto
-                    let taxFromState = product.states?.tax?.decimalValue
+                    //Inicia variavel da taxa do estado com 6% por padrão
+                    var taxFromState: Decimal? = 6.0
+                    
+                    //Caso exista uma taxa de estado no produto, substitui a default 6.0
+                    if (product.states?.tax?.decimalValue != nil) {
+                        taxFromState = product.states?.tax?.decimalValue
+                    }
                                         
                     //Calcula o total em BRL
                     //totalProductBRL = ValorProduto * ((TaxaEstado/100) + 1) * CotacaoDolar
@@ -96,8 +104,8 @@ class TotalViewController: UIViewController {
         }
         
         //Exibe totais na tela
-        lbTotalUSD.text = "0.0"
-        lbTotalBRL.text = "0.0"
+        lbTotalUSD.text = "\(totalUSD)"
+        lbTotalBRL.text = "\(totalBRL)"
     }
 
 }
