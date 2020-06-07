@@ -17,6 +17,7 @@
 		3FEB5E832489D0A000C58B83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB5E812489D0A000C58B83 /* LaunchScreen.storyboard */; };
 		3FEB5E8B2489D27600C58B83 /* ComprasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB5E8A2489D27600C58B83 /* ComprasTableViewController.swift */; };
 		43DEB4A1248C22870067EA5E /* TotalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DEB4A0248C22870067EA5E /* TotalViewController.swift */; };
+		43DEB4A3248C96B00067EA5E /* CompraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DEB4A2248C96B00067EA5E /* CompraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		3FEB5E842489D0A000C58B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FEB5E8A2489D27600C58B83 /* ComprasTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComprasTableViewController.swift; sourceTree = "<group>"; };
 		43DEB4A0248C22870067EA5E /* TotalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalViewController.swift; sourceTree = "<group>"; };
+		43DEB4A2248C96B00067EA5E /* CompraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				3FEB5E812489D0A000C58B83 /* LaunchScreen.storyboard */,
 				3FEB5E842489D0A000C58B83 /* Info.plist */,
 				43DEB4A0248C22870067EA5E /* TotalViewController.swift */,
+				43DEB4A2248C96B00067EA5E /* CompraViewController.swift */,
 			);
 			path = ComprasUSA;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			files = (
 				3F82EBE5248C35A500FDD6CC /* ComprasModel.xcdatamodeld in Sources */,
 				3FEB5E782489D09E00C58B83 /* ViewController.swift in Sources */,
+				43DEB4A3248C96B00067EA5E /* CompraViewController.swift in Sources */,
 				3FEB5E742489D09E00C58B83 /* AppDelegate.swift in Sources */,
 				3FEB5E762489D09E00C58B83 /* SceneDelegate.swift in Sources */,
 				3F82EBE7248C3A0300FDD6CC /* UIViewController+CoreData.swift in Sources */,
