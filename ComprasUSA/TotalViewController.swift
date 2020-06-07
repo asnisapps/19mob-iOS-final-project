@@ -55,6 +55,10 @@ class TotalViewController: UIViewController {
     
     func calculateTotals() {
         
+        //Zera as variaveis de total
+        totalUSD = 0.0
+        totalBRL = 0.0
+        
         //Verifica se existem produtos, caso contrario exibe 0 para os totais
         if let count = fetchedResultController.fetchedObjects?.count{
             
@@ -97,15 +101,11 @@ class TotalViewController: UIViewController {
                 
             }
             
-        } else {
-            //Não existem produtos
-            totalUSD = 0.0
-            totalBRL = 0.0
         }
         
         //Exibe totais na tela
-        lbTotalUSD.text = "\(totalUSD)"
-        lbTotalBRL.text = "\(totalBRL)"
+        lbTotalUSD.text = String(format: "%.2f", Double(truncating:totalUSD as NSNumber))
+        lbTotalBRL.text = String(format: "%.2f", Double(truncating:totalBRL as NSNumber))
     }
 
 }
