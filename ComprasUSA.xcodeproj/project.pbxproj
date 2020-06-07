@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F82EBE5248C35A500FDD6CC /* ComprasModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F82EBE3248C35A500FDD6CC /* ComprasModel.xcdatamodeld */; };
 		3F82EBE7248C3A0300FDD6CC /* UIViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F82EBE6248C3A0300FDD6CC /* UIViewController+CoreData.swift */; };
+		3F82EBED248D539300FDD6CC /* CompraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F82EBEC248D539300FDD6CC /* CompraTableViewCell.swift */; };
 		3FEB5E742489D09E00C58B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB5E732489D09E00C58B83 /* AppDelegate.swift */; };
 		3FEB5E762489D09E00C58B83 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB5E752489D09E00C58B83 /* SceneDelegate.swift */; };
 		3FEB5E782489D09E00C58B83 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB5E772489D09E00C58B83 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		3F82EBE4248C35A500FDD6CC /* ComprasModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComprasModel.xcdatamodel; sourceTree = "<group>"; };
 		3F82EBE6248C3A0300FDD6CC /* UIViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+CoreData.swift"; sourceTree = "<group>"; };
+		3F82EBEC248D539300FDD6CC /* CompraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompraTableViewCell.swift; sourceTree = "<group>"; };
 		3FEB5E702489D09E00C58B83 /* ComprasUSA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComprasUSA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FEB5E732489D09E00C58B83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FEB5E752489D09E00C58B83 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				3FEB5E752489D09E00C58B83 /* SceneDelegate.swift */,
 				3FEB5E772489D09E00C58B83 /* ViewController.swift */,
 				3FEB5E792489D09E00C58B83 /* Main.storyboard */,
+				3F82EBEC248D539300FDD6CC /* CompraTableViewCell.swift */,
 				3F82EBE3248C35A500FDD6CC /* ComprasModel.xcdatamodeld */,
 				3FEB5E8A2489D27600C58B83 /* ComprasTableViewController.swift */,
 				3FEB5E7F2489D0A000C58B83 /* Assets.xcassets */,
@@ -155,6 +158,7 @@
 			files = (
 				3F82EBE5248C35A500FDD6CC /* ComprasModel.xcdatamodeld in Sources */,
 				3FEB5E782489D09E00C58B83 /* ViewController.swift in Sources */,
+				3F82EBED248D539300FDD6CC /* CompraTableViewCell.swift in Sources */,
 				43DEB4A3248C96B00067EA5E /* CompraViewController.swift in Sources */,
 				3FEB5E742489D09E00C58B83 /* AppDelegate.swift in Sources */,
 				3FEB5E762489D09E00C58B83 /* SceneDelegate.swift in Sources */,
