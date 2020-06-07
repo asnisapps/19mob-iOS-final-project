@@ -198,10 +198,9 @@ extension UIViewController {
                     }
             
             state1?.name = textField.text
-            state1?.tax = textField2.text
-            
-            try? self.context.save()
-            
+            state1?.tax = NSDecimalNumber(string: textField2.text ?? "0.0")
+                        
+            try? self.context.save()           
             
             
             self.navigationController?.popViewController(animated: true)

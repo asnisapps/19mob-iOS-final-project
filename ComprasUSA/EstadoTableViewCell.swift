@@ -20,14 +20,7 @@ class EstadoTableViewCell: UITableViewCell{
     func prepare (with estado: State){
         
         lbState.text = estado.name
-        lbTax.text = estado.tax
-        
-      
-      
-        
-       
-        
-        
+        lbTax.text = "\(estado.tax ?? 0)"
         
     }
     
