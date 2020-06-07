@@ -66,7 +66,7 @@
         <!--Cadastrar Produto-->
         <scene sceneID="a0c-iR-Lja">
             <objects>
-                <viewController id="cBs-jx-igP" customClass="ProdutoViewController" customModule="ComprasUSA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cBs-jx-igP" customClass="CompraViewController" customModule="ComprasUSA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="icv-uF-fl2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -296,6 +296,7 @@
         <segue reference="Zt4-YR-9Ar"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="Itens" width="788" height="466"/>
         <image name="bag" catalog="system" width="128" height="128"/>
         <image name="bag.fill" catalog="system" width="128" height="128"/>
         <image name="pencil.and.outline" catalog="system" width="128" height="119"/>

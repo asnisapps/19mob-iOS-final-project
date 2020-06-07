@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProdutoViewController: UIViewController {
+class CompraViewController: UIViewController {
 
     @IBOutlet weak var tfProductName: UITextField!
     @IBOutlet weak var pvProductState: UIPickerView!
@@ -105,7 +105,7 @@ class ProdutoViewController: UIViewController {
 
 }
 
-extension ProdutoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension CompraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
