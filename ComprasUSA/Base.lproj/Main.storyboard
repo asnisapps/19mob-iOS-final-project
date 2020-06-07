@@ -66,7 +66,7 @@
         <!--Cadastrar Produto-->
         <scene sceneID="a0c-iR-Lja">
             <objects>
-                <viewController id="cBs-jx-igP" sceneMemberID="viewController">
+                <viewController id="cBs-jx-igP" customClass="CompraViewController" customModule="ComprasUSA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="icv-uF-fl2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,6 +114,9 @@
                                 <state key="normal" title="CADASTRAR">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="save:" destination="cBs-jx-igP" eventType="touchUpInside" id="EOJ-k2-8NL"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -146,6 +149,14 @@
                         <viewLayoutGuide key="safeArea" id="ze7-UH-cAf"/>
                     </view>
                     <navigationItem key="navigationItem" title="Cadastrar Produto" id="I8q-Tw-xge"/>
+                    <connections>
+                        <outlet property="btProductSave" destination="gMH-yh-7Ec" id="moh-69-MfI"/>
+                        <outlet property="ivProductImage" destination="BNN-dD-B4f" id="sv0-6l-aYN"/>
+                        <outlet property="pvProductState" destination="J13-y0-sZ0" id="Gvv-va-frW"/>
+                        <outlet property="swProductCard" destination="OKc-f9-QQf" id="LsM-Wl-okc"/>
+                        <outlet property="tfProductName" destination="Vjc-qq-M7d" id="5Eh-Ra-ly2"/>
+                        <outlet property="tfProductValue" destination="Ckx-rj-4Oy" id="X0j-Ii-OMm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Nj-XV-vdT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -308,6 +319,10 @@
                         <viewLayoutGuide key="safeArea" id="nT1-u9-voF"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Compras" image="bag" catalog="system" id="daD-MP-ECq"/>
+                    <connections>
+                        <outlet property="lbTotalBRL" destination="gH9-7Z-ejg" id="ojf-1d-EC4"/>
+                        <outlet property="lbTotalUSD" destination="jG4-G7-GvI" id="3p0-h7-V9S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5XT-bT-yuG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
