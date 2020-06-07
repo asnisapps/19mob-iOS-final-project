@@ -5,12 +5,12 @@
         <attribute name="isCredit" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="value" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <relationship name="states" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State"/>
+        <relationship name="states" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="products" inverseEntity="State"/>
     </entity>
     <entity name="State" representedClassName="State" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="tax" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="states" inverseEntity="Product"/>
     </entity>
     <elements>
         <element name="Product" positionX="-63" positionY="-18" width="128" height="118"/>
