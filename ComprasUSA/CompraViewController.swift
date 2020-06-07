@@ -18,6 +18,8 @@ class CompraViewController: UIViewController {
     @IBOutlet weak var btProductSave: UIButton!
     
     var product: Product?
+    var alertText: Bool = false
+    var alertNumber: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +82,12 @@ class CompraViewController: UIViewController {
             product = Product(context: context)
         }
         
+        alertText = !validateText(tfProductName.text)
+        if !alertText {
+            alertText = !validateText(tfProductValue.text)
+        }
+        alertNumber = !validateNumber(tfProductValue.text)
+        
         product?.name = tfProductName.text
         product?.value = NSDecimalNumber(string: tfProductValue.text ?? "0.0")
         //product?.states =
@@ -87,11 +95,47 @@ class CompraViewController: UIViewController {
         product?.image = ivProductImage.image?.jpegData(compressionQuality: 0.8)
         
         do {
-            try context.save()
+            if alertText || alertNumber {
+                showAlert(alertText, alertNumber)
+            } else {
+                try context.save()
+            }
+            
         } catch {
             print(error.localizedDescription)
         }
         navigationController?.popViewController(animated: true)
+    }
+    
+    func showAlert(_ validateText: Bool, _ validateNumber: Bool ) {
+        var text: String = ""
+        
+        if validateText && !validateNumber {
+            text = "Todos os campos são obrigatórios, por favor, verifique se estão preenchidos!"
+        } else if !validateText && validateNumber {
+            text = "O campo de valor aceita apenas números. Por gentileza, verifique novamente!"
+        } else if validateText && validateNumber {
+            text = "Valores incorretos, por gentileza, verifique se há apenas números no campo de valor e se esqueceu de preencher algum outro campo!"
+        }
+        
+        let alertController = UIAlertController(title: "ComprasUSA", message:
+            text, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func validateText(_ text: String?) -> Bool {
+        guard let message = text else { return false }
+            if message == nil || message == "" || message.isEmpty {
+                return false
+            }
+        return true
+    }
+    
+    func validateNumber(_ text: String?) -> Bool {
+        guard let number = text else { return false }
+        return number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
     
     
