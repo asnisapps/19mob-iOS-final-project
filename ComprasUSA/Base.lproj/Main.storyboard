@@ -231,13 +231,13 @@
                                 <rect key="frame" x="233.5" y="58.5" width="66.5" height="34"/>
                                 <accessibility key="accessibilityConfiguration" identifier="exchangeRate"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dPs-wW-a4U">
                                 <rect key="frame" x="233.5" y="101.5" width="66.5" height="34"/>
                                 <accessibility key="accessibilityConfiguration" identifier="percIOF"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Impostos por estado" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-pZ-gyI">
                                 <rect key="frame" x="20" y="155.5" width="280" height="26"/>
