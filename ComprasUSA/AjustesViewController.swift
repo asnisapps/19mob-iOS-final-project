@@ -16,14 +16,14 @@ var state1: State?
 enum UserDefaultKeys: String {
     case dolar = "3.0"
     case iof = "2.0"
-   
+    
 }
 
 
 
 
 class AjustesViewController: UIViewController {
-
+    
     let ud = UserDefaults.standard
     var statesArray: [State] = []
     var label = UILabel(frame: CGRect(x: 0, y:0, width: 200, height: 22))
@@ -42,8 +42,8 @@ class AjustesViewController: UIViewController {
                         inputPlaceholder2:"Imposto",
                         inputKeyboardType: .default,
                         inputKeyboardType2: .decimalPad
-                        
-                        )
+            
+            )
         { (input:String? ) in
             
             
@@ -54,12 +54,12 @@ class AjustesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-           super.viewWillAppear(animated)
-       
-           tfDolar1.text = ud.string(forKey: UserDefaultKeys.dolar.rawValue)
-           tfIof1.text = ud.string(forKey: UserDefaultKeys.iof.rawValue)
-           
-       }
+        super.viewWillAppear(animated)
+        
+        tfDolar1.text = ud.string(forKey: UserDefaultKeys.dolar.rawValue)
+        tfIof1.text = ud.string(forKey: UserDefaultKeys.iof.rawValue)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,7 @@ class AjustesViewController: UIViewController {
         tvTax.delegate = self
         loadState()
     }
-
+    
     
     func loadState() {
         
@@ -87,7 +87,7 @@ class AjustesViewController: UIViewController {
         }
         try? fetchedResultsController.performFetch()
         
-
+        
     }
     
 }
@@ -95,13 +95,32 @@ class AjustesViewController: UIViewController {
 extension AjustesViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-        
-        let state = fetchedResultsController.object(at: indexPath)
-        context.delete(state)
-        
-        try? context.save()
+            
+            let state = fetchedResultsController.object(at: indexPath)
+            context.delete(state)
+            
+            try? context.save()
+        }
     }
-}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tvTax.cellForRow(at: indexPath) as? EstadoTableViewCell else {
+            return
+        }
+        
+        
+        
+        showInputDialog(
+            title: "Editar Estado",
+            actionTitle: "Salvar",
+            cancelTitle: "Cancelar",
+            inputPlaceholder1: cell.lbState.text ,
+            inputPlaceholder2: cell.lbTax.text,
+            inputKeyboardType: .default,
+            inputKeyboardType2: .decimalPad
+            
+        )
+        
+    }
 }
 
 
@@ -109,28 +128,20 @@ extension AjustesViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsController.fetchedObjects?.count ?? 0
-       
-        //        if let count = fetchedResultsController.fetchedObjects?.count {
-//            tableView.backgroundView = count == 0 ? label : nil
-//            print ("pirir \(count)")
-//            return count
-//
-//        } else {
-//            tableView.backgroundView = label
-//            return 0
-//        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? EstadoTableViewCell else {
-                return UITableViewCell()
-            }
-
-            let state = fetchedResultsController.object(at: indexPath)
-            
-            cell.prepare(with: state)
-
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? EstadoTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let state = fetchedResultsController.object(at: indexPath)
+        
+        cell.prepare(with: state)
+        
+        return cell
     }
     
     
@@ -138,15 +149,6 @@ extension AjustesViewController: UITableViewDataSource{
 }
 
 
-//extension AjustesViewController: NSFetchedResultsControllerDelegate {
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//
-//        tvTax.reloadData()
-//
-//    }
-//
-//
-//}
 
 extension AjustesViewController: NSFetchedResultsControllerDelegate{
     
@@ -167,7 +169,7 @@ extension UIViewController {
                          inputKeyboardType2:UIKeyboardType = UIKeyboardType.default,
                          cancelHandler: ((UIAlertAction) -> Swift.Void)? = nil,
                          actionHandler: ((  _ :String?) -> Void)? = nil) {
-
+        
         let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
         alert.addTextField { (t1) in
             t1.placeholder = inputPlaceholder1
@@ -190,39 +192,37 @@ extension UIViewController {
                 return
             }
             
-            print(textField.text)
-            print(textField2.text)
             
-            if state1 == nil {
-                state1 = State(context: self.context)
-                    }
             
-            state1?.name = textField.text
-            state1?.tax = NSDecimalNumber(string: textField2.text ?? "0.0")
-                        
+            let newState = State(context: self.context)
+            
+            
+            newState.name = textField.text
+            newState.tax = NSDecimalNumber(string: textField2.text ?? "0.0")
+            
             try? self.context.save()           
             
             
             self.navigationController?.popViewController(animated: true)
             
             
-         
+            
             actionHandler?(textField.text)
         }))
         alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
-
+        
         self.present(alert, animated: true, completion: nil)
     }
 }
 
 extension AjustesViewController: UITextFieldDelegate {
-     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-         
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         ud.set(tfDolar1.text!, forKey: UserDefaultKeys.dolar.rawValue)
         
         ud.set(tfIof1.text!, forKey: UserDefaultKeys.iof.rawValue)
-         
-         textField.resignFirstResponder()
-         return true
-     }
- }
+        
+        textField.resignFirstResponder()
+        return true
+    }
+}
