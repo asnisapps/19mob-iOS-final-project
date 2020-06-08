@@ -100,6 +100,11 @@ extension AjustesViewController: UITableViewDelegate{
             let state = fetchedResultsController.object(at: indexPath)
             context.delete(state)
             
+            //Também apagar todos os produtos com o mesmo state
+            for product in state.products! {
+                context.delete(product as! NSManagedObject)
+            }
+            
             try? context.save()
         }
     }
@@ -193,26 +198,48 @@ extension UIViewController {
                 return
             }
             
+            let stateName = textField.text
+            let decimalValue = textField2.text
             
-            
-            let newState = State(context: self.context)
-            
-            
-            newState.name = textField.text
-            newState.tax = NSDecimalNumber(string: textField2.text ?? "0.0")
-            
-            try? self.context.save()           
-            
+            if self.validateNumber2(decimalValue) && self.validateText2(stateName) {
+                
+                let newState = State(context: self.context)
+                
+                newState.name = textField.text
+                newState.tax = NSDecimalNumber(string: textField2.text ?? "0.0")
+                
+                try? self.context.save()
+            } else {
+                let alert = UIAlertController(title: "Valor Invalido", message: "Insira um valor valido", preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+                self.present(alert, animated: true)
+            }
             
             self.navigationController?.popViewController(animated: true)
-            
-            
             
             actionHandler?(textField.text)
         }))
         alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func validateNumber2(_ text: String?) -> Bool {
+        guard let number = text else { return false }
+            if number == nil || number == "" || number.isEmpty {
+                return false
+            }
+        return number.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+    }
+    
+    func validateText2(_ text: String?) -> Bool {
+        guard let message = text else { return false }
+            if message == nil || message == "" || message.isEmpty {
+                return false
+            }
+        return true
     }
 }
 

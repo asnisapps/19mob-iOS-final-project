@@ -27,6 +27,15 @@ class CompraViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Carregando o vetor de estados
+        loadStates()
+        
+        //Vinculando o UIPickerView a esta classe
+        self.pvProductState.delegate = self
+        self.pvProductState.dataSource = self
+        
+        //print(pvProductState.numberOfRows(inComponent: 0))
 
         if let product = product {
             tfProductName.text = product.name
@@ -39,6 +48,12 @@ class CompraViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             //pvProductState.
             //pvProductState.dataSource = product.states as? UIPickerViewDataSource
             //pvProductState.selectedRow(inComponent: product.states.)
+            print("Estado do produto a ser alterado: " + product.states!.name!)
+            
+            let stateRow: Int? = statesArray.firstIndex(of: product.states!)
+            print("stateRow: \(stateRow!)")
+            pvProductState.selectRow(stateRow!, inComponent: 0, animated: true)
+            
             if let data = product.image {
                 ivProductImage.image = UIImage(data: data)
             }
@@ -47,15 +62,12 @@ class CompraViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         // Do any additional setup after loading the view.
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-            ivProductImage.isUserInteractionEnabled = true
+        ivProductImage.isUserInteractionEnabled = true
         ivProductImage.addGestureRecognizer(tapGestureRecognizer)
         
-        //Carregando o vetor de estados
-        loadStates()
+        tfProductName.delegate = self
+        tfProductValue.delegate = self
         
-        //Vinculando o UIPickerView a esta classe
-        self.pvProductState.delegate = self
-        self.pvProductState.dataSource = self
     }
     
     //Retorna o número de componentes do picker view
@@ -77,7 +89,11 @@ class CompraViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // This method is triggered whenever the user makes a change to the picker selection.
         // The parameter named row and component represents what was selected.
+        //print(row)
+        //print(statesArray[row])
         stateSelected = statesArray[row]
+        
+        //print(pvProductState.numberOfRows(inComponent: 0))
     }
     
     
@@ -98,10 +114,22 @@ class CompraViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         do {
             //Executando a requisição
             statesArray = try context.fetch(fetchRequest)
+            //print(statesArray)
             try fetchedResultController.performFetch()
         } catch {
             print(error.localizedDescription)
         }
+        
+        if let count = fetchedResultController.fetchedObjects?.count{
+            //Caso existam estados
+            if count > 0 && stateSelected == nil {
+                //print("Selecionou estado default")
+                
+                //Seleciona o primeiro estado por padrão após carregar o
+                stateSelected = statesArray[0]
+            }
+        }
+        
     }
     
     func selectPicture(sourceType: UIImagePickerController.SourceType) {
@@ -132,8 +160,7 @@ class CompraViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
-        
-        
+                
         present(alert, animated: true, completion: nil)
     }
     
@@ -152,8 +179,9 @@ class CompraViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         product?.name = tfProductName.text
         product?.value = NSDecimalNumber(string: tfProductValue.text ?? "0.0")
+        //print(stateSelected)
         product?.states = stateSelected
-        print(product?.states?.name)
+        //print(product?.states?.name)
         product?.isCredit = swProductCard.isOn
         product?.image = ivProductImage.image?.jpegData(compressionQuality: 0.8)
         
@@ -231,6 +259,14 @@ extension CompraViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         loadStates()
         //guard let states = fetchedResultController.fetchedObjects else { return }
-        //pvProductState.dataSource = (states as! UIPickerViewDataSource)
+        pvProductState.reloadAllComponents()
+    }
+}
+
+extension CompraViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+                
+        textField.resignFirstResponder()
+        return true
     }
 }
