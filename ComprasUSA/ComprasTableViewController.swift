@@ -88,7 +88,6 @@ class ComprasTableViewController: UITableViewController {
 
         //Recuperando da fetchedResultController o produto referente à célula
         let product  = fetchedResultController.object(at: indexPath)
-
         cell.prepare(with: product)
         return cell
     }
