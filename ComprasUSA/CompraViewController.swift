@@ -68,6 +68,18 @@ class CompraViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         tfProductName.delegate = self
         tfProductValue.delegate = self
         
+        tfProductValue.addDoneCancelToolbar(onDone: (target: self, action: #selector(self.tapDone)), onCancel: (target: self, action: #selector(self.tapCancel)))
+        
+    }
+    
+    @objc func tapDone() {
+        //print("tapped Done")
+        tfProductValue.resignFirstResponder()
+    }
+
+    @objc func tapCancel() {
+        //print("tapped cancel")        
+        tfProductValue.resignFirstResponder()
     }
     
     //Retorna o número de componentes do picker view
@@ -270,3 +282,6 @@ extension CompraViewController: UITextFieldDelegate {
         return true
     }
 }
+
+
+

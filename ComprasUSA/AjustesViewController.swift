@@ -67,7 +67,28 @@ class AjustesViewController: UIViewController {
         tfDolar1.delegate = self
         tfIof1.delegate = self
         
+        tfDolar1.addDoneCancelToolbar(onDone: (target: self, action: #selector(self.tapDone)), onCancel: (target: self, action: #selector(self.tapCancel)))
+        
+        tfIof1.addDoneCancelToolbar(onDone: (target: self, action: #selector(self.tapDone)), onCancel: (target: self, action: #selector(self.tapCancel)))
+        
         loadState()
+    }
+    
+    @objc func tapDone() {
+        //print("tapped Done")
+        
+        tfDolar1.resignFirstResponder()
+        tfIof1.resignFirstResponder()
+        
+        ud.set(tfDolar1.text!, forKey: UserDefaultKeys.dolar.rawValue)
+        ud.set(tfIof1.text!, forKey: UserDefaultKeys.iof.rawValue)
+    }
+
+    @objc func tapCancel() {
+        //print("tapped cancel")
+        
+        tfDolar1.resignFirstResponder()
+        tfIof1.resignFirstResponder()
     }
     
     
@@ -252,4 +273,27 @@ extension AjustesViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+}
+
+extension UITextField {
+    func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
+        let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
+        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
+
+        let toolbar: UIToolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.items = [
+            UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
+        ]
+        toolbar.sizeToFit()
+
+        self.inputAccessoryView = toolbar
+    }
+
+// Default actions:
+@objc func doneButtonTapped() { self.resignFirstResponder() }
+@objc func cancelButtonTapped() { self.resignFirstResponder() }
+    
 }
