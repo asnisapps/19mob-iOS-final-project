@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class CompraViewController: UIViewController {
+class CompraViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var tfProductName: UITextField!
     @IBOutlet weak var pvProductState: UIPickerView!
@@ -18,6 +19,9 @@ class CompraViewController: UIViewController {
     @IBOutlet weak var btProductSave: UIButton!
     
     var product: Product?
+    var fetchedResultController: NSFetchedResultsController<State>!
+    var statesArray: [State] = []
+    var stateSelected: State?
     var alertText: Bool = false
     var alertNumber: Bool = false
     
@@ -28,7 +32,12 @@ class CompraViewController: UIViewController {
             tfProductName.text = product.name
             tfProductValue.text = "\(product.value ?? 0)"
             swProductCard.isOn = product.isCredit
-            pvProductState.dataSource = product.states as? UIPickerViewDataSource
+            //guard let nameState = product.states else { return }
+            //print("Nome do estado gravado no produto: \(nameState.name)")
+            //guard let indexState = statesArray.index(of: nameState) else { return }
+            //pvProductState.selectedRow(inComponent: indexState)
+            //pvProductState.
+            //pvProductState.dataSource = product.states as? UIPickerViewDataSource
             //pvProductState.selectedRow(inComponent: product.states.)
             if let data = product.image {
                 ivProductImage.image = UIImage(data: data)
@@ -40,6 +49,59 @@ class CompraViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
             ivProductImage.isUserInteractionEnabled = true
         ivProductImage.addGestureRecognizer(tapGestureRecognizer)
+        
+        //Carregando o vetor de estados
+        loadStates()
+        
+        //Vinculando o UIPickerView a esta classe
+        self.pvProductState.delegate = self
+        self.pvProductState.dataSource = self
+    }
+    
+    //Retorna o número de componentes do picker view
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    //Retorna o número de linhas por componente do picker view
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return statesArray.count
+    }
+    
+    //Retorna qual dado será inserido em cada linha
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return statesArray[row].name
+    }
+    
+    //Recupera o valor selecionado no picker view
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // This method is triggered whenever the user makes a change to the picker selection.
+        // The parameter named row and component represents what was selected.
+        stateSelected = statesArray[row]
+    }
+    
+    
+    func loadStates() {
+        //Criando um objeto de requisição que será feita através da fetchedResultController
+        //Essa request pode ser criada a partir do método da própria model
+        let fetchRequest: NSFetchRequest<State> = State.fetchRequest()
+        
+        //Definindo o tipo de ordenação da busca. Aqui, definimos ordenação ascendente por name
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true )
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        //Instanciando NSFetchedResultsController, passando as informações de fetchRequest
+        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        //Definimos nossa CompraViewController como delegate da fetchedRèsultController
+        fetchedResultController.delegate = self
+        do {
+            //Executando a requisição
+            statesArray = try context.fetch(fetchRequest)
+            try fetchedResultController.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     func selectPicture(sourceType: UIImagePickerController.SourceType) {
@@ -90,7 +152,8 @@ class CompraViewController: UIViewController {
         
         product?.name = tfProductName.text
         product?.value = NSDecimalNumber(string: tfProductValue.text ?? "0.0")
-        //product?.states =
+        product?.states = stateSelected
+        print(product?.states?.name)
         product?.isCredit = swProductCard.isOn
         product?.image = ivProductImage.image?.jpegData(compressionQuality: 0.8)
         
@@ -158,5 +221,16 @@ extension CompraViewController: UIImagePickerControllerDelegate, UINavigationCon
             ivProductImage.image = image
         }
         dismiss(animated: true, completion: nil)
+    }
+}
+
+//Implementando o protocolo NSFetchedResultsControllerDelegate
+extension CompraViewController: NSFetchedResultsControllerDelegate {
+    
+    //Método que é chamado sempre que uma alteração é feita no contexto
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        loadStates()
+        //guard let states = fetchedResultController.fetchedObjects else { return }
+        //pvProductState.dataSource = (states as! UIPickerViewDataSource)
     }
 }
