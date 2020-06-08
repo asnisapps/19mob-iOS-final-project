@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 class TotalViewController: UIViewController {
     
     @IBOutlet weak var lbTotalUSD: UILabel!
@@ -17,10 +18,12 @@ class TotalViewController: UIViewController {
     var totalUSD: Decimal = 0.0
     var totalBRL: Decimal = 0.0
     
-    var exchangeRate: Decimal = 4.0
-    var percIOF:Decimal = 6.38
+    var exchangeRate: Decimal? = 5.0
+    var percIOF:Decimal? = 6.38
     
     var fetchedResultController: NSFetchedResultsController<Product>!
+    
+    let ud = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,17 @@ class TotalViewController: UIViewController {
         
         //Carrega produtos
         loadProducts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
+        //Carrega dolar e IOF do userDefaults
+        exchangeRate = NSDecimalNumber(string: ud.string(forKey: UserDefaultKeys.dolar.rawValue) ?? "0.0").decimalValue
+        percIOF = NSDecimalNumber(string: ud.string(forKey: UserDefaultKeys.iof.rawValue) ?? "0.0").decimalValue
+        
+        print("\(exchangeRate!)")
+        print("\(percIOF!)")
         
         //Calcula totais logo que entrar na tela
         calculateTotals()
@@ -87,12 +101,12 @@ class TotalViewController: UIViewController {
                                         
                     //Calcula o total em BRL
                     //totalProductBRL = ValorProduto * ((TaxaEstado/100) + 1) * CotacaoDolar
-                    var totalProductBRL = decimalValueOfProduct! * ( (taxFromState!/100) + 1 ) * exchangeRate
+                    var totalProductBRL = decimalValueOfProduct! * ( (taxFromState!/100) + 1 ) * exchangeRate!
  
                     //Verifica se produto foi pago com cartão
                     if product.isCredit {
                         //Usou cartão de credito, incluir IOF
-                        totalProductBRL = totalProductBRL * ( (percIOF/100) + 1 )
+                        totalProductBRL = totalProductBRL * ( (percIOF!/100) + 1 )
                     }
                     
                     //Soma o valor calculado em BRL do produto ao total BRL
