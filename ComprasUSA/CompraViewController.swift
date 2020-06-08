@@ -65,6 +65,9 @@ class CompraViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         ivProductImage.isUserInteractionEnabled = true
         ivProductImage.addGestureRecognizer(tapGestureRecognizer)
         
+        tfProductName.delegate = self
+        tfProductValue.delegate = self
+        
     }
     
     //Retorna o número de componentes do picker view
@@ -256,6 +259,14 @@ extension CompraViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         loadStates()
         //guard let states = fetchedResultController.fetchedObjects else { return }
-        //pvProductState.dataSource = (states as! UIPickerViewDataSource)
+        pvProductState.reloadAllComponents()
+    }
+}
+
+extension CompraViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+                
+        textField.resignFirstResponder()
+        return true
     }
 }
