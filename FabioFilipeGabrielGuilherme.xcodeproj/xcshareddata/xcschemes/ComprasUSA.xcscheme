@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3FEB5E6F2489D09E00C58B83"
-               BuildableName = "ComprasUSA.app"
-               BlueprintName = "ComprasUSA"
-               ReferencedContainer = "container:ComprasUSA.xcodeproj">
+               BuildableName = "FabioFilipeGabrielGuilherme.app"
+               BlueprintName = "FabioFilipeGabrielGuilherme"
+               ReferencedContainer = "container:FabioFilipeGabrielGuilherme.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3FEB5E6F2489D09E00C58B83"
-            BuildableName = "ComprasUSA.app"
-            BlueprintName = "ComprasUSA"
-            ReferencedContainer = "container:ComprasUSA.xcodeproj">
+            BuildableName = "FabioFilipeGabrielGuilherme.app"
+            BlueprintName = "FabioFilipeGabrielGuilherme"
+            ReferencedContainer = "container:FabioFilipeGabrielGuilherme.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3FEB5E6F2489D09E00C58B83"
-            BuildableName = "ComprasUSA.app"
-            BlueprintName = "ComprasUSA"
-            ReferencedContainer = "container:ComprasUSA.xcodeproj">
+            BuildableName = "FabioFilipeGabrielGuilherme.app"
+            BlueprintName = "FabioFilipeGabrielGuilherme"
+            ReferencedContainer = "container:FabioFilipeGabrielGuilherme.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

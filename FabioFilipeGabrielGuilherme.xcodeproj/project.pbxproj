@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3FEB5E6F2489D09E00C58B83 /* ComprasUSA */ = {
+		3FEB5E6F2489D09E00C58B83 /* FabioFilipeGabrielGuilherme */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3FEB5E872489D0A000C58B83 /* Build configuration list for PBXNativeTarget "ComprasUSA" */;
+			buildConfigurationList = 3FEB5E872489D0A000C58B83 /* Build configuration list for PBXNativeTarget "FabioFilipeGabrielGuilherme" */;
 			buildPhases = (
 				3FEB5E6C2489D09E00C58B83 /* Sources */,
 				3FEB5E6D2489D09E00C58B83 /* Frameworks */,
@@ -121,7 +121,7 @@
 			);
 			dependencies = (
 			);
-			name = ComprasUSA;
+			name = FabioFilipeGabrielGuilherme;
 			productName = ComprasUSA;
 			productReference = 3FEB5E702489D09E00C58B83 /* ComprasUSA.app */;
 			productType = "com.apple.product-type.application";
@@ -141,7 +141,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3FEB5E6B2489D09E00C58B83 /* Build configuration list for PBXProject "ComprasUSA" */;
+			buildConfigurationList = 3FEB5E6B2489D09E00C58B83 /* Build configuration list for PBXProject "FabioFilipeGabrielGuilherme" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -154,7 +154,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3FEB5E6F2489D09E00C58B83 /* ComprasUSA */,
+				3FEB5E6F2489D09E00C58B83 /* FabioFilipeGabrielGuilherme */,
 			);
 		};
 /* End PBXProject section */
@@ -339,7 +339,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.fiap.ComprasUSA;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ComprasUSA;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -357,7 +357,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.fiap.ComprasUSA;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ComprasUSA;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -366,7 +366,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3FEB5E6B2489D09E00C58B83 /* Build configuration list for PBXProject "ComprasUSA" */ = {
+		3FEB5E6B2489D09E00C58B83 /* Build configuration list for PBXProject "FabioFilipeGabrielGuilherme" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3FEB5E852489D0A000C58B83 /* Debug */,
@@ -375,7 +375,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3FEB5E872489D0A000C58B83 /* Build configuration list for PBXNativeTarget "ComprasUSA" */ = {
+		3FEB5E872489D0A000C58B83 /* Build configuration list for PBXNativeTarget "FabioFilipeGabrielGuilherme" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3FEB5E882489D0A000C58B83 /* Debug */,
