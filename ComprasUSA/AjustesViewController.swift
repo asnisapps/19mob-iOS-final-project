@@ -14,12 +14,9 @@ var state1: State?
 
 
 enum UserDefaultKeys: String {
-    case dolar = "3.0"
-    case iof = "2.0"
-   
+    case dolar = "exchangeRate"
+    case iof = "percIOF"
 }
-
-
 
 
 class AjustesViewController: UIViewController {
@@ -66,6 +63,10 @@ class AjustesViewController: UIViewController {
         // Do any additional setup after loading the view.
         tvTax.dataSource = self
         tvTax.delegate = self
+        
+        tfDolar1.delegate = self
+        tfIof1.delegate = self
+        
         loadState()
     }
 
@@ -219,10 +220,13 @@ extension AjustesViewController: UITextFieldDelegate {
      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
          
         ud.set(tfDolar1.text!, forKey: UserDefaultKeys.dolar.rawValue)
-        
         ud.set(tfIof1.text!, forKey: UserDefaultKeys.iof.rawValue)
          
-         textField.resignFirstResponder()
-         return true
+        textField.resignFirstResponder()
+        
+        print(tfDolar1.text!)
+        print(tfIof1.text!)
+        
+        return true
      }
  }
